@@ -48,7 +48,7 @@ const mensagens = {
 
 function verificaCampo(campo) {
   let mensagem = "";
-  campo.setCUstomValidity("");
+  campo.setCustomValidity("");
   if (campo.name == "cpf" && campo.value.length >= 11) {
     ehUmCPF(campo);
   }
@@ -57,16 +57,16 @@ function verificaCampo(campo) {
   }
   tiposDeErro.forEach((erro) => {
     if (campo.validity[erro]) {
-      mensagem = mensagem[campo.name][erro];
+      mensagem = mensagens[campo.name][erro];
       console.log(mensagem);
     }
   });
-  const mensagemErro = campo.parentNode.querySelector("mensagem-erro");
-  const validorDeInput = campo.checkValidity();
+  const mensagemErro = campo.parentNode.querySelector(".mensagem-erro");
+  const validadorDeInput = campo.checkValidity();
 
-  if (!validorDeInput) {
-    mensagemErro.textoContent = mensagem;
+  if (!validadorDeInput) {
+    mensagemErro.textContent = mensagem;
   } else {
-    mensagemErro.textoContent = "";
+    mensagemErro.textContent = "";
   }
 }
